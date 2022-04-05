@@ -5,30 +5,7 @@ document.getElementById("cells").innerHTML = '';
 let difficoltà = document.getElementById("difficoltà").value;
 console.log(difficoltà)
 
-// creo delle condizioni in base alla difficoltà
-
-if (difficoltà == "facile"){
-    createGrid("cell", "cell_easy_mode", 100)
-    coloredSquare (".cell", "active", "active_bomb")
-    generateBombs (100)
-     
-    } else if(difficoltà == "media"){
-        createGrid("cell", "cell_normal_mode", 81)
-        coloredSquare (".cell", "active", "active_bomb" )
-        generateBombs (81)
-        
-    } else {
-        createGrid("cell", "cell_hard_mode", 49)
-        coloredSquare (".cell", "active" , "active_bomb")
-         generateBombs (49)
-    }
-
-
-}
-
 // creo la funzione per generare le celle
-
-
 function createGrid(className, secondClassName, numeroDifficoltà){
     const cellsElement = document.getElementById("cells")
 
@@ -50,23 +27,21 @@ for (let k = 0 ; k<arrayCell.length ; k++){
     quadratino.addEventListener("click", function (){
     
     console.log(this,k)
-
-     if(randomBomb.includes (k)){
+    //se c'è la bomba la casella si colora di rosso
+     if(randomBomb.includes (k+1)){
          this.classList.add(activeBomb)
-     } else{
+         
+     } else{ //sennò diventa blu
         this.classList.add(activeClass)
      }
-
     })
     }     
 }
-
 
 // creo 16 numeri random
 function randomNumbers(min, max) {
     return Math.floor(Math.random() * (max - min + 1) ) + min;
 }
-
 
 let randomBomb = [];
 console.log(randomBomb)
@@ -77,12 +52,32 @@ function generateBombs (numerocelle) {
 while (randomBomb.length !==16){
      bomb = randomNumbers (1, numerocelle)
      if(!randomBomb.includes(bomb)){
-        randomBomb.push(bomb-1)
+        randomBomb.push(bomb)
         console.log(bomb)
     }
 }
-
 }
+
+// creo delle condizioni in base alla difficoltà
+
+if (difficoltà == "facile"){
+    createGrid("cell", "cell_easy_mode", 100)
+    coloredSquare (".cell", "active", "active_bomb")
+    generateBombs (100)
+     
+    } else if(difficoltà == "media"){
+        createGrid("cell", "cell_normal_mode", 81)
+        coloredSquare (".cell", "active", "active_bomb" )
+        generateBombs (81)
+        
+    } else {
+        createGrid("cell", "cell_hard_mode", 49)
+        coloredSquare (".cell", "active" , "active_bomb")
+         generateBombs (49)
+    }
+}
+
+
 
 
 
