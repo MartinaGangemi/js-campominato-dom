@@ -20,7 +20,7 @@ if (difficoltà == "facile"){
     } else {
         createGrid("cell", "cell_hard_mode", 49)
         coloredSquare (".cell", "active" , "active_bomb")
-         generateBombs (100)
+         generateBombs (49)
     }
 
 
@@ -33,7 +33,7 @@ function createGrid(className, secondClassName, numeroDifficoltà){
     const cellsElement = document.getElementById("cells")
 
     // ciclo per generare tot quadratini
-    for (let i = 1; i<=numeroDifficoltà; ++i){
+    for (let i = 1; i<=numeroDifficoltà; i++){
     const divTag = document.createElement("div")
     divTag.classList.add(className)
     divTag.classList.add(secondClassName)
@@ -45,7 +45,7 @@ function createGrid(className, secondClassName, numeroDifficoltà){
 //funzione quando clicco sul quadrato si colora
 function coloredSquare (selector, activeClass, activeBomb){
 const arrayCell = document.querySelectorAll(selector);
-for (let k = 1 ; k<arrayCell.length ; k++){
+for (let k = 0 ; k<arrayCell.length ; k++){
     const quadratino = arrayCell[k]
     quadratino.addEventListener("click", function (){
     
@@ -77,7 +77,7 @@ function generateBombs (numerocelle) {
 while (randomBomb.length !==16){
      bomb = randomNumbers (1, numerocelle)
      if(!randomBomb.includes(bomb)){
-        randomBomb.push(bomb)
+        randomBomb.push(bomb-1)
         console.log(bomb)
     }
 }
