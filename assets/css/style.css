@@ -54,3 +54,8 @@ body{
 footer{
     height: 50px;
 }
+
+.active_bomb{
+    background-color: red;
+    color: white;
+}
